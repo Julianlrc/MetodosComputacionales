@@ -520,9 +520,5 @@ void solverPeriodicas2(float nu, float alpha, float T[100][100])
 			
 			}
 		}
-
-
 	}
-
-
 }

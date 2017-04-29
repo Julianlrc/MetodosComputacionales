@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.29)  29 APR 2017 17:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.29)  29 APR 2017 18:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -530,7 +530,10 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip45
 )
-No file Resultados_hw4.aux.
+(./Resultados_hw4.aux
+LaTeX Info: Redefining \. on input line 23.
+LaTeX Info: Redefining \% on input line 23.
+)
 \openout1 = `Resultados_hw4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
@@ -549,6 +552,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
+
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count102
@@ -591,6 +595,8 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 12.
 LaTeX Info: Redefining \pageref on input line 12.
 LaTeX Info: Redefining \nameref on input line 12.
+
+(./Resultados_hw4.out) (./Resultados_hw4.out)
 \@outlinefile=\write3
 \openout3 = `Resultados_hw4.out'.
 
@@ -615,9 +621,6 @@ Overfull \hbox (72.52684pt too wide) in paragraph at lines 29--31
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <f1_2500.pdf, id=6, 462.52798pt x 346.89601pt>
 File: f1_2500.pdf Graphic file (type pdf)
  <use f1_2500.pdf>
@@ -627,9 +630,6 @@ Package pdftex.def Info: f1_2500.pdf used on input line 34.
 Overfull \hbox (72.52684pt too wide) in paragraph at lines 34--36
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <f2_0.pdf, id=7, 462.52798pt x 346.89601pt>
 File: f2_0.pdf Graphic file (type pdf)
@@ -641,9 +641,6 @@ Overfull \hbox (72.52684pt too wide) in paragraph at lines 39--41
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <f2_100.pdf, id=8, 462.52798pt x 346.89601pt>
 File: f2_100.pdf Graphic file (type pdf)
  <use f2_100.pdf>
@@ -653,9 +650,6 @@ Package pdftex.def Info: f2_100.pdf used on input line 44.
 Overfull \hbox (72.52684pt too wide) in paragraph at lines 44--46
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <f2_2500.pdf, id=9, 462.52798pt x 346.89601pt>
 File: f2_2500.pdf Graphic file (type pdf)
@@ -667,9 +661,6 @@ Overfull \hbox (72.52684pt too wide) in paragraph at lines 49--51
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <a1_0.pdf, id=10, 462.52798pt x 346.89601pt>
 File: a1_0.pdf Graphic file (type pdf)
  <use a1_0.pdf>
@@ -679,9 +670,6 @@ Package pdftex.def Info: a1_0.pdf used on input line 54.
 Overfull \hbox (72.52684pt too wide) in paragraph at lines 54--56
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <a1_100.pdf, id=11, 462.52798pt x 346.89601pt>
 File: a1_100.pdf Graphic file (type pdf)
@@ -693,9 +681,6 @@ Overfull \hbox (72.52684pt too wide) in paragraph at lines 59--61
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <a1_2500.pdf, id=12, 462.52798pt x 346.89601pt>
 File: a1_2500.pdf Graphic file (type pdf)
  <use a1_2500.pdf>
@@ -705,9 +690,6 @@ Package pdftex.def Info: a1_2500.pdf used on input line 64.
 Overfull \hbox (72.52684pt too wide) in paragraph at lines 64--66
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <a2_0.pdf, id=13, 462.52798pt x 346.89601pt>
 File: a2_0.pdf Graphic file (type pdf)
@@ -719,9 +701,6 @@ Overfull \hbox (72.52684pt too wide) in paragraph at lines 69--71
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <a2_100.pdf, id=14, 462.52798pt x 346.89601pt>
 File: a2_100.pdf Graphic file (type pdf)
  <use a2_100.pdf>
@@ -731,9 +710,6 @@ Package pdftex.def Info: a2_100.pdf used on input line 74.
 Overfull \hbox (72.52684pt too wide) in paragraph at lines 74--76
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <a2_2500.pdf, id=15, 462.52798pt x 346.89601pt>
 File: a2_2500.pdf Graphic file (type pdf)
@@ -745,9 +721,6 @@ Overfull \hbox (72.52684pt too wide) in paragraph at lines 79--81
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <p1_0.pdf, id=16, 462.52798pt x 346.89601pt>
 File: p1_0.pdf Graphic file (type pdf)
  <use p1_0.pdf>
@@ -757,9 +730,6 @@ Package pdftex.def Info: p1_0.pdf used on input line 84.
 Overfull \hbox (72.52684pt too wide) in paragraph at lines 84--86
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <p1_100.pdf, id=17, 462.52798pt x 346.89601pt>
 File: p1_100.pdf Graphic file (type pdf)
@@ -771,9 +741,6 @@ Overfull \hbox (72.52684pt too wide) in paragraph at lines 89--91
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <p1_2500.pdf, id=18, 462.52798pt x 346.89601pt>
 File: p1_2500.pdf Graphic file (type pdf)
  <use p1_2500.pdf>
@@ -783,9 +750,6 @@ Package pdftex.def Info: p1_2500.pdf used on input line 94.
 Overfull \hbox (72.52684pt too wide) in paragraph at lines 94--96
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <p2_0.pdf, id=19, 462.52798pt x 346.89601pt>
 File: p2_0.pdf Graphic file (type pdf)
@@ -797,9 +761,6 @@ Overfull \hbox (72.52684pt too wide) in paragraph at lines 99--101
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <p2_100.pdf, id=20, 462.52798pt x 346.89601pt>
 File: p2_100.pdf Graphic file (type pdf)
  <use p2_100.pdf>
@@ -809,9 +770,6 @@ Package pdftex.def Info: p2_100.pdf used on input line 104.
 Overfull \hbox (72.52684pt too wide) in paragraph at lines 104--106
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <p2_2500.pdf, id=21, 462.52798pt x 346.89601pt>
 File: p2_2500.pdf Graphic file (type pdf)
@@ -823,9 +781,6 @@ Overfull \hbox (72.52684pt too wide) in paragraph at lines 109--111
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <prom1.pdf, id=22, 462.52798pt x 346.89601pt>
 File: prom1.pdf Graphic file (type pdf)
  <use prom1.pdf>
@@ -836,9 +791,6 @@ Overfull \hbox (72.52684pt too wide) in paragraph at lines 114--116
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 <prom2.pdf, id=23, 462.52798pt x 346.89601pt>
 File: prom2.pdf Graphic file (type pdf)
  <use prom2.pdf>
@@ -848,9 +800,6 @@ Package pdftex.def Info: prom2.pdf used on input line 119.
 Overfull \hbox (72.52684pt too wide) in paragraph at lines 119--121
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
 Package babel Info: Redefining spanish shorthand <<
@@ -1364,31 +1313,24 @@ LaTeX Info: Redefining \% on input line 23.
 )
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
-
-
-Package rerunfilecheck Warning: File `Resultados_hw4.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Resultados_hw4.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package rerunfilecheck Info: File `Resultados_hw4.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 127.
  ) 
 Here is how much of TeX's memory you used:
- 6370 strings out of 494850
- 90789 string characters out of 6178024
- 178926 words of memory out of 5000000
+ 6376 strings out of 494850
+ 90903 string characters out of 6178024
+ 179030 words of memory out of 5000000
  9587 multiletter control sequences out of 15000+600000
  4851 words of font info for 18 fonts, out of 8000000 for 9000
  62 hyphenation exceptions out of 8191
  30i,5n,30p,247b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on Resultados_hw4.pdf (20 pages, 327557 bytes).
+Output written on Resultados_hw4.pdf (20 pages, 340755 bytes).
 PDF statistics:
- 903 PDF objects out of 1000 (max. 8388607)
- 237 compressed objects within 3 object streams
+ 953 PDF objects out of 1000 (max. 8388607)
+ 245 compressed objects within 3 object streams
  22 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
