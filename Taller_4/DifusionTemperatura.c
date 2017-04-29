@@ -93,8 +93,45 @@ int main()
 	fclose(abiertas1_2500);
 	fclose(abiertas1_prom);
 
+	// CONDICIONES DE FRONTERA PERIODICAS //
 
-	// CASO 2 //
+	/*
+	inicializar(100.0, 50.0, Temp);
+
+	FILE *periodicas1_0 = fopen("periodicas_caso1_0.txt", "w+");	
+	FILE *periodicas1_2500 = fopen("periodicas_caso1_2500.txt", "w+");
+	FILE *periodicas1_100 = fopen("periodicas_caso1_100.txt", "w+");
+	FILE *periodicas1_prom = fopen("periodicas_caso1_prom.txt", "w+");
+
+	imprimirEnArchivo(periodicas1_0, Temp);
+	fclose(periodicas1_0);
+	
+	fprintf(periodicas1_prom, "%f %f \n", 0.0, promedio(Temp)); 
+	
+	for(i=0; i<(2500/dt);i++)
+	{	
+		solverPeriodicas1(nu, alpha, Temp);
+		
+		if(i==(100/dt-1))
+		{	
+			imprimirEnArchivo(periodicas1_100, Temp);
+		}
+
+		if(i==(2500/dt-1))
+		{
+			imprimirEnArchivo(periodicas1_2500, Temp);
+		}
+
+		fprintf(periodicas1_prom, "%f %f \n", dt*(i+1), promedio(Temp));	
+
+	}
+	
+	fclose(periodicas1_100);
+	fclose(periodicas1_2500);
+	fclose(periodicas1_prom);
+	*/
+
+	// CASO 2 ------------------------------------------------------------//
 
 	// C.F FIJAS //
 
@@ -291,9 +328,9 @@ void solverAbiertas1(float nu, float alpha, float T[100][100])
 
 	//Esquinas
 	T[0][0] = nu*alpha*(2*T_past[0][1] + 2*T_past[1][0] - 4*T_past[0][0])+T_past[0][0];
-	T[100][0] = nu*alpha*(2*T_past[100][1] + 2*T_past[100][0] - 4*T_past[100][0])+T_past[100][0];
-	T[0][100] = nu*alpha*(2*T_past[0][100] + 2*T_past[1][100] - 4*T_past[0][100])+T_past[0][100];
-	T[100][100] = nu*alpha*(2*T_past[100][100] + 2*T_past[100][100] - 4*T_past[100][100]+T_past[0][0]);
+        T[100][0] = nu*alpha*(2*T_past[100][1] + 2*T_past[99][0] - 4*T_past[100][0])+T_past[100][0];
+        T[0][100] = nu*alpha*(2*T_past[0][99] + 2*T_past[1][100] - 4*T_past[0][100])+T_past[0][100];
+        T[100][100] = nu*alpha*(2*T_past[100][99] + 2*T_past[99][100] - 4*T_past[100][100]+T_past[0][0]);
 
 	for(i=0;i<100;i++)
 	{
@@ -341,9 +378,9 @@ void solverAbiertas2(float nu, float alpha, float T[100][100])
 
 	//Esquinas
 	T[0][0] = nu*alpha*(2*T_past[0][1] + 2*T_past[1][0] - 4*T_past[0][0])+T_past[0][0];
-	T[100][0] = nu*alpha*(2*T_past[100][1] + 2*T_past[100][0] - 4*T_past[100][0])+T_past[100][0];
-	T[0][100] = nu*alpha*(2*T_past[0][100] + 2*T_past[1][100] - 4*T_past[0][100])+T_past[0][100];
-	T[100][100] = nu*alpha*(2*T_past[100][100] + 2*T_past[100][100] - 4*T_past[100][100]+T_past[0][0]);
+	T[100][0] = nu*alpha*(2*T_past[100][1] + 2*T_past[99][0] - 4*T_past[100][0])+T_past[100][0];
+	T[0][100] = nu*alpha*(2*T_past[0][99] + 2*T_past[1][100] - 4*T_past[0][100])+T_past[0][100];
+	T[100][100] = nu*alpha*(2*T_past[100][99] + 2*T_past[99][100] - 4*T_past[100][100]+T_past[0][0]);
 
 	for(i=0;i<100;i++)
 	{
@@ -377,3 +414,16 @@ void solverAbiertas2(float nu, float alpha, float T[100][100])
 		}
 	}	
 }
+
+/*
+void solverPeriodicas1(float nu, float alpha, float T[100][100])
+{
+
+
+
+
+
+
+
+}
+*/
