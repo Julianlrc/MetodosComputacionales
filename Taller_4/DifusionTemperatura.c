@@ -5,10 +5,11 @@
 float solverUno(float nu, float alpha, float T[100][100]);
 void inicializar(float temp_rect, float temp_placa, float T[100][100]);
 float solverDos(float nu, float alpha, float T[100][100]);
+void imprimirEnArchivo(FILE *out, float T[100][100]);
 
 int main()
 {
-	float nu = 0.0001;
+	float nu = 0.1;
 	float dx = 1.0;
 	float dt = 0.2;
 	float alpha = dt/(dx*dx);	
@@ -19,48 +20,31 @@ int main()
 
 	int i,j;
 
-	float T_f_2500[100][100];
-       	inicializar(100.0, 50.0, T_f_2500);
+	float Temp[100][100];
+       	inicializar(100.0, 50.0, Temp);
        
 	FILE *fijas_0 = fopen("fijas_caso1_0.txt", "w+");	
 	FILE *fijas_2500 = fopen("fijas_caso1_2500.txt", "w+");
 	FILE *fijas_100 = fopen("fijas_caso1_100.txt", "w+");
 	
-	for(i=0;i<100;i++)
-	{	
-		for(j=0;j<100;j++)
-		{
-			fprintf(fijas_0, "%f \n", T_f_2500[i][j]);
-		}
-	}
+	imprimirEnArchivo(fijas_0, Temp);
 	fclose(fijas_0);
-
-	float T_f_100[100][100];
-	inicializar(100.0, 50.0, T_f_100);
 	
 	for(i=0; i<(2500/dt);i++)
 	{	
-		solverUno(nu, alpha, T_f_2500);
+		solverUno(nu, alpha, Temp);
 		
 		if(i==(100/dt-1))
 		{	
-			T_f_100[100][100]= T_f_2500[100][100];
+			imprimirEnArchivo(fijas_100, Temp);
 		}
 
 		if(i==(2500/dt-1))
 		{
-			T_f_2500[100][100] = T_f_2500[100][100];
+			imprimirEnArchivo(fijas_2500, Temp);
 		}	
 	}
 
-	for(i=0; i<100; i++)
-	{
-		for(j=0; j<100; j++)
-		{
-			fprintf(fijas_2500, "%f \n", T_f_2500[i][j]);
-			fprintf(fijas_100, "%f \n", T_f_100[i][j]);
-		}
-	}
 	fclose(fijas_100);
 	fclose(fijas_2500);
 
@@ -68,48 +52,30 @@ int main()
 
 	// C.F FIJAS //
 
-	float T_f2_2500[100][100];
-       	inicializar(100.0, 50.0, T_f2_2500);
+       	inicializar(100.0, 50.0, Temp);
        
 	FILE *fijas2_0 = fopen("fijas_caso2_0.txt", "w+");	
 	FILE *fijas2_2500 = fopen("fijas_caso2_2500.txt", "w+");
 	FILE *fijas2_100 = fopen("fijas_caso2_100.txt", "w+");
 	
-	for(i=0;i<100;i++)
-	{	
-		for(j=0;j<100;j++)
-		{
-			fprintf(fijas2_0, "%f \n", T_f2_2500[i][j]);
-		}
-	}
+	imprimirEnArchivo(fijas2_0, Temp);
 	fclose(fijas2_0);
-
-	float T_f2_100[100][100];
-	inicializar(100.0, 50.0, T_f2_100);
 		
 	for(i=0; i<(2500/dt);i++)
 	{	
-		solverDos(nu, alpha, T_f2_2500);
+		solverDos(nu, alpha, Temp);
 		
 		if(i==(100/dt-1))
 		{	
-			T_f2_100[100][100]= T_f2_2500[100][100];
+			imprimirEnArchivo(fijas2_100, Temp);
 		}
 
 		if(i==(2500/dt-1))
 		{
-			T_f2_2500[100][100] = T_f2_2500[100][100];
+			imprimirEnArchivo(fijas2_2500, Temp);
 		}	
 	}
 
-	for(i=0; i<100; i++)
-	{
-		for(j=0; j<100; j++)
-		{
-			fprintf(fijas2_2500, "%f \n", T_f_2500[i][j]);
-			fprintf(fijas2_100, "%f \n", T_f_100[i][j]);
-		}
-	}
 	fclose(fijas2_100);
 	fclose(fijas2_2500);
 
@@ -188,3 +154,19 @@ float solverDos(float nu, float alpha, float T[100][100])
 
 	return T[100][100];
 }
+
+
+void imprimirEnArchivo(FILE *out, float T[100][100])
+{
+	int i,j;
+
+	for(i=0; i<100; i++)
+	{
+		for(j=0; j<100; j++)
+		{
+			fprintf(out, "%f \n", T[i][j]);
+		}
+	}
+
+}
+
