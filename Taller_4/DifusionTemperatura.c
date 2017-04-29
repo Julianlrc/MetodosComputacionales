@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <math.h>
 
-void solverFijas1(float nu, float alpha, float T[100][100]);
 void inicializar(float temp_rect, float temp_placa, float T[100][100]);
-void solverFijas2(float nu, float alpha, float T[100][100]);
 void imprimirEnArchivo(FILE *out, float T[100][100]);
 float promedio(float T[100][100]);
+void solverFijas1(float nu, float alpha, float T[100][100]);
+void solverFijas2(float nu, float alpha, float T[100][100]);
 void solverAbiertas1(float nu, float alpha, float T[100][100]);
 void solverAbiertas2(float nu, float alpha, float T[100][100]);
 void solverPeriodicas1(float nu, float alpha, float T[100][100]);
@@ -245,30 +245,6 @@ int main()
         
 }
 
-void solverFijas1(float nu, float alpha, float T[100][100])
-{	
-	int i,j;
-
-	float T_past[100][100];
-	for(i=0;i<100;i++)
-	{
-		for(j=0;j<100;j++)
-		{
-			T_past[i][j] = T[i][j];
-		}
-	}
-
-	for(i=1; i<99; i++)
-	{
-		for(j=1; j<99; j++)
-		{
-			T[i][j]= nu*alpha*(T_past[i+1][j]+T_past[i-1][j]+T_past[i][j+1]+T_past[i][j-1]-4*T_past[i][j])+T_past[i][j];
-		}
-		
-	}
-
-}
-
 void inicializar(float temp_rect, float temp_placa, float T[100][100])
 {
 	int i,j;
@@ -288,33 +264,6 @@ void inicializar(float temp_rect, float temp_placa, float T[100][100])
 	}
 
 }
-
-void solverFijas2(float nu, float alpha, float T[100][100])
-{
-	
-	int i,j;                                        
-        float T_past[100][100];
-        for(i=0;i<100;i++)
-        {
-        	for(j=0;j<100;j++)
-        	{
-        		T_past[i][j] = T[i][j];
-		}
-	}
-
-	for(i=1; i<99; i++)
-       	{
-        	for(j=1; j<99; j++)
-       		{
-			if(!(i>=20 && i<40 && j>=45 && j<55))
-			{
-	    			T[i][j]= nu*alpha*(T_past[i+1][j]+T_past[i-1][j]+T_past[i][j+1]+T_past[i][j-1]-4*T_past[i][j])+T_past[i][j];
-			}
-		}
-	}
-
-}
-
 
 void imprimirEnArchivo(FILE *out, float T[100][100])
 {
@@ -348,6 +297,57 @@ float promedio(float T[100][100])
 	return (float)(mean/(100.0*100.0));
 	
 }
+
+void solverFijas1(float nu, float alpha, float T[100][100])
+{	
+	int i,j;
+
+	float T_past[100][100];
+	for(i=0;i<100;i++)
+	{
+		for(j=0;j<100;j++)
+		{
+			T_past[i][j] = T[i][j];
+		}
+	}
+
+	for(i=1; i<99; i++)
+	{
+		for(j=1; j<99; j++)
+		{
+			T[i][j]= nu*alpha*(T_past[i+1][j]+T_past[i-1][j]+T_past[i][j+1]+T_past[i][j-1]-4*T_past[i][j])+T_past[i][j];
+		}
+		
+	}
+
+}
+
+void solverFijas2(float nu, float alpha, float T[100][100])
+{
+	
+	int i,j;                                        
+        float T_past[100][100];
+        for(i=0;i<100;i++)
+        {
+        	for(j=0;j<100;j++)
+        	{
+        		T_past[i][j] = T[i][j];
+		}
+	}
+
+	for(i=1; i<99; i++)
+       	{
+        	for(j=1; j<99; j++)
+       		{
+			if(!(i>=20 && i<40 && j>=45 && j<55))
+			{
+	    			T[i][j]= nu*alpha*(T_past[i+1][j]+T_past[i-1][j]+T_past[i][j+1]+T_past[i][j-1]-4*T_past[i][j])+T_past[i][j];
+			}
+		}
+	}
+
+}
+
 
 void solverAbiertas1(float nu, float alpha, float T[100][100])
 {
