@@ -2,13 +2,15 @@
 #include <stdlib.h>
 #include <math.h>
 
-float solverUno(float nu, float alpha, float T[100][100]);
+void solverFijas1(float nu, float alpha, float T[100][100]);
 void inicializar(float temp_rect, float temp_placa, float T[100][100]);
-float solverDos(float nu, float alpha, float T[100][100]);
+void solverFijas2(float nu, float alpha, float T[100][100]);
 void imprimirEnArchivo(FILE *out, float T[100][100]);
 float promedio(float T[100][100]);
 void solverAbiertas1(float nu, float alpha, float T[100][100]);
 void solverAbiertas2(float nu, float alpha, float T[100][100]);
+void solverPeriodicas1(float nu, float alpha, float T[100][100]);
+void solverPeriodicas2(float nu, float alpha, float T[100][100]);
 
 int main()
 {
@@ -38,7 +40,7 @@ int main()
 	
 	for(i=0; i<(2500/dt);i++)
 	{	
-		solverUno(nu, alpha, Temp);
+		solverFijas1(nu, alpha, Temp);
 		
 		if(i==(100/dt-1))
 		{	
@@ -95,7 +97,7 @@ int main()
 
 	// CONDICIONES DE FRONTERA PERIODICAS //
 
-	/*
+	
 	inicializar(100.0, 50.0, Temp);
 
 	FILE *periodicas1_0 = fopen("periodicas_caso1_0.txt", "w+");	
@@ -129,11 +131,11 @@ int main()
 	fclose(periodicas1_100);
 	fclose(periodicas1_2500);
 	fclose(periodicas1_prom);
-	*/
+	
 
 	// CASO 2 ------------------------------------------------------------//
 
-	// C.F FIJAS //
+	// CONDICIONES DE FRONTERA FIJAS //
 
        	inicializar(100.0, 50.0, Temp);
        
@@ -149,7 +151,7 @@ int main()
 		
 	for(i=0; i<(2500/dt);i++)
 	{	
-		solverDos(nu, alpha, Temp);
+		solverFijas2(nu, alpha, Temp);
 		
 		if(i==(100/dt-1))
 		{	
@@ -168,7 +170,7 @@ int main()
 	fclose(fijas2_2500);
 	fclose(fijas2_prom);
 
-	// C.F ABIERTAS //
+	// CONDICIONES DE FRONTERA ABIERTAS //
 
 	inicializar(100.0, 50.0, Temp);
 
@@ -203,11 +205,47 @@ int main()
 	fclose(abiertas2_2500);
 	fclose(abiertas2_prom);
 
+	// CONDICIONES DE FRONTERA PERIODICAS //
+
+	inicializar(100.0, 50.0, Temp);
+
+	FILE *periodicas2_0 = fopen("periodicas_caso2_0.txt", "w+");	
+	FILE *periodicas2_2500 = fopen("periodicas_caso2_2500.txt", "w+");
+	FILE *periodicas2_100 = fopen("periodicas_caso2_100.txt", "w+");
+	FILE *periodicas2_prom = fopen("periodicas_caso2_prom.txt", "w+");
+
+	imprimirEnArchivo(periodicas2_0, Temp);
+	fclose(periodicas2_0);
+	
+	fprintf(periodicas2_prom, "%f %f \n", 0.0, promedio(Temp)); 
+	
+	for(i=0; i<(2500/dt);i++)
+	{	
+		solverPeriodicas2(nu, alpha, Temp);
+		
+		if(i==(100/dt-1))
+		{	
+			imprimirEnArchivo(periodicas2_100, Temp);
+		}
+
+		if(i==(2500/dt-1))
+		{
+			imprimirEnArchivo(periodicas2_2500, Temp);
+		}
+
+		fprintf(periodicas2_prom, "%f %f \n", dt*(i+1), promedio(Temp));	
+
+	}
+	
+	fclose(periodicas2_100);
+	fclose(periodicas2_2500);
+	fclose(periodicas2_prom);
+
 	return 0;
         
 }
 
-float solverUno(float nu, float alpha, float T[100][100])
+void solverFijas1(float nu, float alpha, float T[100][100])
 {	
 	int i,j;
 
@@ -229,7 +267,6 @@ float solverUno(float nu, float alpha, float T[100][100])
 		
 	}
 
-	return T[100][100];
 }
 
 void inicializar(float temp_rect, float temp_placa, float T[100][100])
@@ -252,7 +289,7 @@ void inicializar(float temp_rect, float temp_placa, float T[100][100])
 
 }
 
-float solverDos(float nu, float alpha, float T[100][100])
+void solverFijas2(float nu, float alpha, float T[100][100])
 {
 	
 	int i,j;                                        
@@ -276,7 +313,6 @@ float solverDos(float nu, float alpha, float T[100][100])
 		}
 	}
 
-	return T[100][100];
 }
 
 
@@ -415,15 +451,78 @@ void solverAbiertas2(float nu, float alpha, float T[100][100])
 	}	
 }
 
-/*
+int calcularModulo(int i, int j)
+{	
+	int m;
+	if(j > 0)  
+	{ 
+		m = i % j;
+	}
+	else
+	{
+		m = i % -j;
+	}
+	if(m < 0)
+	{
+		m += j;
+	}
+	return m;
+}
+
+
 void solverPeriodicas1(float nu, float alpha, float T[100][100])
 {
+	int i,j;
+	float T_past[100][100];
+
+	for(i=0;i<100;i++)
+	{
+		for(j=0;j<100;j++)
+		{
+			T_past[i][j] = T[i][j];
+		}
+	}
+
+	for(i=0;i<100;i++)
+	{
+		for(j=0;j<100;j++)
+		{
+			T[i][j] = nu*alpha*(T_past[i][calcularModulo(j+1, 100)] + T_past[i][calcularModulo(j-1,100)] + T_past[calcularModulo(i+1,100)][j] + T_past[calcularModulo(i-1,100)][j] - 4*T_past[i][j]) + T_past[i][j];
+			
+		}
 
 
-
-
-
+	}
 
 
 }
-*/
+
+void solverPeriodicas2(float nu, float alpha, float T[100][100])
+{
+	int i,j;
+	float T_past[100][100];
+
+	for(i=0;i<100;i++)
+	{
+		for(j=0;j<100;j++)
+		{
+			T_past[i][j] = T[i][j];
+		}
+	}
+
+	for(i=0;i<100;i++)
+	{
+		for(j=0;j<100;j++)
+		{
+			if(!(i>=20 && i<40 && j>=45 && j<55))
+			{
+				T[i][j] = nu*alpha*(T_past[i][calcularModulo(j+1, 100)] + T_past[i][calcularModulo(j-1,100)] + T_past[calcularModulo(i+1,100)][j] + T_past[calcularModulo(i-1,100)][j] - 4*T_past[i][j]) + T_past[i][j];
+			
+			}
+		}
+
+
+	}
+
+
+}
