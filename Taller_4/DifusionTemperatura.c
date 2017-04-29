@@ -8,6 +8,7 @@ float solverDos(float nu, float alpha, float T[100][100]);
 void imprimirEnArchivo(FILE *out, float T[100][100]);
 float promedio(float T[100][100]);
 void solverAbiertas1(float nu, float alpha, float T[100][100]);
+void solverAbiertas2(float nu, float alpha, float T[100][100]);
 
 int main()
 {
@@ -129,6 +130,41 @@ int main()
 	fclose(fijas2_100);
 	fclose(fijas2_2500);
 	fclose(fijas2_prom);
+
+	// C.F ABIERTAS //
+
+	inicializar(100.0, 50.0, Temp);
+
+	FILE *abiertas2_0 = fopen("abiertas_caso2_0.txt", "w+");	
+	FILE *abiertas2_2500 = fopen("abiertas_caso2_2500.txt", "w+");
+	FILE *abiertas2_100 = fopen("abiertas_caso2_100.txt", "w+");
+	FILE *abiertas2_prom = fopen("abiertas_caso2_prom.txt", "w+");
+
+	imprimirEnArchivo(abiertas2_0, Temp);
+	fclose(abiertas2_0);
+	
+	fprintf(abiertas2_prom, "%f %f \n", 0.0, promedio(Temp)); 
+	
+	for(i=0; i<(2500/dt);i++)
+	{	
+		solverAbiertas2(nu, alpha, Temp);
+		
+		if(i==(100/dt-1))
+		{	
+			imprimirEnArchivo(abiertas2_100, Temp);
+		}
+
+		if(i==(2500/dt-1))
+		{
+			imprimirEnArchivo(abiertas2_2500, Temp);
+		}
+
+		fprintf(abiertas2_prom, "%f %f \n", dt*(i+1), promedio(Temp));	
+	}
+	
+	fclose(abiertas2_100);
+	fclose(abiertas2_2500);
+	fclose(abiertas2_prom);
 
 	return 0;
         
@@ -287,4 +323,57 @@ void solverAbiertas1(float nu, float alpha, float T[100][100])
 			}
 		}
 	}
+}
+
+
+void solverAbiertas2(float nu, float alpha, float T[100][100])
+{
+	int i,j;
+	float T_past[100][100];
+
+	for(i=0;i<100;i++)
+	{
+		for(j=0;j<100;j++)
+		{
+			T_past[i][j] = T[i][j];
+		}
+	}
+
+	//Esquinas
+	T[0][0] = nu*alpha*(2*T_past[0][1] + 2*T_past[1][0] - 4*T_past[0][0])+T_past[0][0];
+	T[100][0] = nu*alpha*(2*T_past[100][1] + 2*T_past[100][0] - 4*T_past[100][0])+T_past[100][0];
+	T[0][100] = nu*alpha*(2*T_past[0][100] + 2*T_past[1][100] - 4*T_past[0][100])+T_past[0][100];
+	T[100][100] = nu*alpha*(2*T_past[100][100] + 2*T_past[100][100] - 4*T_past[100][100]+T_past[0][0]);
+
+	for(i=0;i<100;i++)
+	{
+		for(j=0;j<100;j++)
+		{
+			if(!(i>=20 && i<40 && j>=45 && j<55))
+			{
+				if(i==0 && j>0 && j<100)
+				{
+					T[i][j] = nu*alpha*(T_past[i][j+1] + T_past[i][j-1] + 2*T_past[i+1][j] - 4*T_past[i][j]) + T_past[i][j];
+				}
+
+				if(i==100 && j>0 && j<100)
+				{	
+					T[i][j] = T_past[i][j] + nu*alpha*(T_past[i][j+1] + T_past[i][j-1] + 2*T_past[i-1][j] - 4*T_past[i][j]);
+				}
+	
+				if(i>0 && i<100 && j>0 && j<100)
+				{
+					T[i][j] = nu*alpha*(T_past[i][j+1] + T_past[i][j-1] + T_past[i+1][j] + T_past[i-1][j] - 4*T_past[i][j])+T_past[i][j];	
+				}
+				if(j==0 && i>0 && i<100)
+				{
+					T[i][j] = nu*alpha*(2*T_past[i][j+1] + T_past[i+1][j] + T_past[i-1][j] - 4*T_past[i][j])+ T_past[i][j];
+				}
+				if(j==100 && i>0 && i<100)
+				{
+					T[i][j] = nu*alpha*(2*T_past[i][j-1] + T_past[i+1][j] + T_past[i-1][j] - 4*T_past[i][j])+T_past[i][j];
+				}
+			}
+		}
+	}	
 }
