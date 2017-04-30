@@ -14,6 +14,7 @@ void solverPeriodicas2(float nu, float alpha, float T[100][100]);
 
 int main()
 {
+	// Se sugiere un coeficiente de difusion 0.0001; sin embargo, se utiliza 0.1 para notar mejor los cambios producidos
 	float nu = 0.1;
 	float dx = 1.0;
 	float dt = 0.2;
@@ -125,7 +126,6 @@ int main()
 		}
 
 		fprintf(periodicas1_prom, "%f %f \n", dt*(i+1), promedio(Temp));	
-
 	}
 	
 	fclose(periodicas1_100);
