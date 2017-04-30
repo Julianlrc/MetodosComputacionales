@@ -6,8 +6,7 @@
 \usepackage{multirow}
 \usepackage{float}
 \usepackage{hyperref}
-\usepackage{url}
-\decimalpoint
+\usepackage{enumerate} 
 
 \begin{document}
 \begin{center}
@@ -17,105 +16,145 @@
 29 de Abril del 2017
 \end{center}
 
-\section*{Gráficas}
+\section*{Ecuación de difusión de calor}
 
+A continuación se presentan las gráficas obtenidas al resolver la ecuación de difusión de calor para una placa cuadrada de un metro, la cual inicialmente tiene un segmento rectangular con una temperatura mayor al resto de la placa. Esto se realizó para dos casos:
 
-\begin{figure}[ht]
+\begin{itemize}
+\item El segmento rectangular a una temperatura de 100 $^{\circ}$C y el resto de la placa a una de 50 $^{\circ}$C. Estos valores solo eran iniciales, es decir, toda la placa está sujeta a posibles cambios.
+\item El segmento rectangular a una temperatura de 100 $^{\circ}$C y el resto de la placa a una de 50 $^{\circ}$C. Sin embargo, se supone que existe una fuente de calor que permite que el segmento rectangular permanezca con la misma temperatura inicial.
+\end{itemize}
+
+Lo anterior se hizo para distintas condiciones de frontera:\\
+
+\begin{itemize}
+\item Fijas a 50 $^{\circ}$C.
+\item Abiertas
+\item Periódicas
+\end{itemize}
+
+\section*{Condiciones de frontera fijas}
+
+\subsection*{Caso 1}
+
+\begin{figure}[H]
 \includegraphics{f1_0.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{f1_100.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{f1_2500.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\subsection*{Caso 2}
+
+\begin{figure}[H]
 \includegraphics{f2_0.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{f2_100.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{f2_2500.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\section*{Condiciones de frontera abiertas}
+
+\subsection*{Caso 1}
+
+\begin{figure}[H]
 \includegraphics{a1_0.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{a1_100.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{a1_2500.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\subsection*{Caso 2}
+
+\begin{figure}[H]
 \includegraphics{a2_0.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{a2_100.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{a2_2500.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\section*{Condiciones de frontera periódicas}
+
+\subsection*{Caso 1}
+
+\begin{figure}[H]
 \includegraphics{p1_0.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{p1_100.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{p1_2500.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\subsection*{Caso 2}
+
+\begin{figure}[H]
 \includegraphics{p2_0.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{p2_100.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics{p2_2500.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\section*{Promedio de temperaturas}
+
+En cada uno de los casos se calculó la temperatura promedio en función del tiempo para un total de 2500 segundos. A continuación se muestran los promedios que se obtuvieron en los casos 1 y 2 para cada una de las condiciones de frontera.
+
+\subsection*{Caso 1}
+
+\begin{figure}[H]
 \includegraphics{prom1.pdf}
 \centering
 \end{figure}
 
-\begin{figure}[ht]
+\subsection*{Caso 2}
+
+\begin{figure}[H]
 \includegraphics{prom2.pdf}
 \centering
 \end{figure}
