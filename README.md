@@ -7,8 +7,12 @@ En este repositorio se encuentran los talleres realizados, los ejercicios del la
 
 ## Calificaciones obtenidas:
 Taller 1: 100/100
+
 Taller 2: 100/100
+
 Taller 3: 100/100
+
 Taller 4: 100/100
+
 Taller 5 .../100
 
