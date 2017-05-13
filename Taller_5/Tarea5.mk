@@ -1,12 +1,10 @@
-#PLOTSSSSSSS
+Resultado_hw5.pdf : *.png Resultados_hw5.tex
+	pdflatex Resultados_hw5.tex
 
-Resultado_hw5.pdf : $(plots) Resultados_hw5.tex
-	pdflatex Resultados.tex
-
-$(plots) : plots_canal_ionico.py $(files)
+*.png : *.txt plots_canal_ionico.py
 	python plots_canal_ionico.py
 
-$(files) : a.out
+*.txt : a.out
 	./a.out
 
 a.out : canal_ionico.c
