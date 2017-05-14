@@ -20,26 +20,19 @@ void main()
 		random_y[i] = drand48()*(max_y-min_x)+min_y;
 	}
 
-
 	float k = 0.0;
-	float *valores = malloc(10000*sizeof(float));
 	for(i=0; i < 10000;i++)
 	{	
 		float n = exp(-(random_x[i]))-random_y[i];
 		if(n > 0.0)
 		{
-			valores[i] = n;
+
 			k+=1.0;
 		}
-		else
-		{
-			valores[i] = 0.0;
-		}
-	
 	}
 
 	float intervalo = (max_y-min_y)*(max_x-min_x);
 	float integral = intervalo*(k/10000.0);
 
-	printf("El valor de la integral es %f", integral);
+	printf("El valor de la integral es %f \n", integral);
 }
