@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.29)  24 MAY 2017 03:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.29)  24 MAY 2017 14:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -784,7 +784,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 54.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 54.
-[5 <./canal1.pdf>] <y1_hist.pdf, id=177, 462.52798pt x 346.89601pt>
+[5 <./canal1.pdf>] <y1_hist.pdf, id=176, 462.52798pt x 346.89601pt>
 File: y1_hist.pdf Graphic file (type pdf)
 
 <use y1_hist.pdf>
@@ -832,7 +832,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 61.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 61.
- <r_verosimilitud.pdf, id=215, 462.52798pt x 346.89601pt>
+ <r_verosimilitud.pdf, id=214, 462.52798pt x 346.89601pt>
 File: r_verosimilitud.pdf Graphic file (type pdf)
 
 <use r_verosimilitud.pdf>
@@ -1069,9 +1069,9 @@ Here is how much of TeX's memory you used:
  29i,5n,32p,247b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on Resultados_hw5.pdf (12 pages, 683837 bytes).
+Output written on Resultados_hw5.pdf (12 pages, 686231 bytes).
 PDF statistics:
- 538 PDF objects out of 1000 (max. 8388607)
+ 539 PDF objects out of 1000 (max. 8388607)
  179 compressed objects within 2 object streams
  25 named destinations out of 1000 (max. 500000)
  80 words of extra memory for PDF output out of 10000 (max. 10000000)
