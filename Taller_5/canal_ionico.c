@@ -125,7 +125,7 @@ void mcmc(float *x, float *y, char nombreFile[])
 	float alpha, beta;
 	int i,j;
 	srand(time(NULL));
-	int it = 1000000;
+	int it = 200000;
 	float *x_walk = malloc(it*sizeof(float));
 	float *y_walk = malloc(it*sizeof(float));
 	float *r_walk = malloc(it*sizeof(float));
