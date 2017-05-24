@@ -21,9 +21,16 @@ int main()
 	float *x = malloc((n/2)*sizeof(float));
 	float *y = malloc((n/2)*sizeof(float));
 	guardarEnListas(n, in, x , y);
-	mcmc(x, y, "walk1.txt");
+	mcmc(x, y, "walk.txt");
 
 	// Se hace MCMC para el archivo Canal_ionico1.txt
+	FILE *in1 = fopen("Canal_ionico1.txt", "r");
+	int n1 = numFilasArchivo(in1);
+	in1 = fopen("Canal_ionico1.txt", "r");
+	float *x1 = malloc((n1/2)*sizeof(float));
+	float *y1 = malloc((n1/2)*sizeof(float));
+	guardarEnListas(n1, in1, x1, y1);
+	mcmc(x1, y1, "walk1.txt");
 
 	return 0;	
 }
@@ -73,11 +80,10 @@ float calcularRadio(float x1, float x2, float y1, float y2)
 	float y = y2-y1;	
 	float resultado = sqrt(x*x+y*y)-r_mol;	
 
-	if(resultado<1.0)
+	if(resultado<0.0)
 	{
-		resultado=0;
-	}
-	
+		resultado=0.0;
+	}	
 	return resultado;
 }
 
@@ -119,7 +125,7 @@ void mcmc(float *x, float *y, char nombreFile[])
 	float alpha, beta;
 	int i,j;
 	srand(time(NULL));
-	int it = 200000;
+	int it = 1000000;
 	float *x_walk = malloc(it*sizeof(float));
 	float *y_walk = malloc(it*sizeof(float));
 	float *r_walk = malloc(it*sizeof(float));
@@ -154,8 +160,8 @@ void mcmc(float *x, float *y, char nombreFile[])
 		float V = (float)rand()/(float)RAND_MAX;
 		float X = sqrt(-2*log(U))*cos(2*M_PI*V);
 		float Y = sqrt(-2*log(U))*sin(2*M_PI*V);
-		x_prime = 1.0*X + x_walk[i];
-		y_prime = 1.0*Y + y_walk[i];
+		x_prime = 0.1*X + x_walk[i];
+		y_prime = 0.1*Y + y_walk[i];
 
 		float r_prime;
 
@@ -180,10 +186,10 @@ void mcmc(float *x, float *y, char nombreFile[])
 			y_walk[i+1]=y_prime;
 			r_walk[i+1]=r_prime;
 		}
-
-		else
-		{
-			beta = rand()%2;
+		
+                else
+                {
+           		beta = rand()%2;
 			if(beta<=alpha)
 			{		
 				x_walk[i+1]=x_prime;
@@ -196,6 +202,7 @@ void mcmc(float *x, float *y, char nombreFile[])
 				y_walk[i+1]=y_walk[i];
 				r_walk[i+1]=r_walk[i];
 			}
+			
 		}
 		
 		fprintf(out, "%f %f %f \n", x_walk[i+1], y_walk[i+1], r_walk[i+1]);

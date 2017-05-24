@@ -1,11 +1,19 @@
-Resultado_hw5.pdf : *.png Resultados_hw5.tex
+files = walk.txt walk1.txt
+
+Resultado_hw5.pdf : *.png *.jpg Resultados_hw5.tex
 	pdflatex Resultados_hw5.tex
 
-*.png : *.txt plots_canal_ionico.py
+*.jpg : $(files) plots_canal_ionico.py
 	python plots_canal_ionico.py
 
-*.txt : a.out
+*.png : circuitoRC.py
+	python circuitoRC.py
+
+$(files) : a.out
 	./a.out
 
 a.out : canal_ionico.c
 	gcc canal_ionico.c -lm
+
+clean:
+	rm a.out
