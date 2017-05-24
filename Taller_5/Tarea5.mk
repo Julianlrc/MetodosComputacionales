@@ -1,19 +1,19 @@
 files = walk.txt walk1.txt
 
-Resultado_hw5.pdf : *.png *.jpg Resultados_hw5.tex
-	pdflatex Resultados_hw5.tex
+Resultado_hw5.pdf : Resultados_hw5.tex *.jpg *.png
+	pdflatex $<
 
-*.jpg : $(files) plots_canal_ionico.py
-	python plots_canal_ionico.py
-
-*.png : circuitoRC.py
-	python circuitoRC.py
+*.jpg : plots_canal_ionico.py $(files)
+	python $<
 
 $(files) : a.out
-	./a.out
+	./$<
 
-a.out : canal_ionico.c
-	gcc canal_ionico.c -lm
+a.out : canal_ionico.c Canal_ionico.txt Canal_ionico1.txt
+	gcc $< -lm
 
-clean:
-	rm a.out
+*.png : circuitoRC.py CircuitoRC.txt
+	python $<
+
+clean :
+	rm a.out *.png *.jpg *.log *.aux
