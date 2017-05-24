@@ -80,7 +80,7 @@ float calcularRadio(float x1, float x2, float y1, float y2)
 	float y = y2-y1;	
 	float resultado = sqrt(x*x+y*y)-r_mol;	
 
-	if(resultado<1.0)
+	if(resultado<0.0)
 	{
 		resultado=0.0;
 	}	
@@ -122,6 +122,7 @@ float min(int len, float *arreglo)
 
 void mcmc(int length, float *x, float *y, char nombreFile[])
 {
+	FILE *out = fopen(nombreFile, "w+");
 	float alpha, beta;
 	int i,j;
 	srand(time(NULL));
@@ -148,23 +149,20 @@ void mcmc(int length, float *x, float *y, char nombreFile[])
 			r_walk[0]=r;
 		}
 	}
-
-	FILE *out = fopen(nombreFile, "w+");
 	fprintf(out, "%f %f %f \n", x_walk[0], y_walk[0], r_walk[0]);
 
 	float x_prime = x_min;
 	float y_prime = y_min;
 	float r_prime;
-	int n=0;
 	for(i=0; i<it; i++)
 	{
 
-		float U = (float)rand()/(float)RAND_MAX;
-		float V = (float)rand()/(float)RAND_MAX;
-		float X = sqrt(-2*log(U))*cos(2*M_PI*V);
-		float Y = sqrt(-2*log(U))*sin(2*M_PI*V);
-		x_prime = (1.0*X + x_walk[i]);
-		y_prime = (1.0*Y + y_walk[i]);
+		float U1 = (float)rand()/(float)RAND_MAX;
+		float U2 = (float)rand()/(float)RAND_MAX;
+		float xn = sqrt(-2.0*log(U1))*cos(U2*2*M_PI);
+		float yn = sqrt(-2.0*log(U1))*sin(U2*2*M_PI);
+		x_prime = (1.0*xn + x_walk[i]);
+		y_prime = (1.0*yn + y_walk[i]);
 
 		if(x_prime > x_min && x_prime < x_max && y_prime > y_min && y_prime < y_max)			
 		{	
@@ -199,21 +197,17 @@ void mcmc(int length, float *x, float *y, char nombreFile[])
                 			x_walk[i+1]=x_walk[i];
                 			y_walk[i+1]=y_walk[i];
                 			r_walk[i+1]=r_walk[i];
-                		}
-                		
-                	}
-                	
-                	fprintf(out, "%f %f %f \n", x_walk[i+1], y_walk[i+1], r_walk[i+1]);	
+                		}	
+                	}	
 		}
-		
 		else
 		{
 			x_walk[i+1]=x_walk[i];
 			y_walk[i+1]=y_walk[i];
 			r_walk[i+1]=r_walk[i];
-			fprintf(out, "%f %f %f \n", x_walk[i+1], y_walk[i+1], r_walk[i+1]);
 		}
-	}
 
-		fclose(out);	
+		fprintf(out, "%f %f %f \n", x_walk[i+1], y_walk[i+1], r_walk[i+1]);	
+	}
+	fclose(out);	
 }
